@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>StudySync - Share Knowledge, Grow Together</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <header class="nav">
+      <div class="nav__shell">
+        <a class="brand" href="#top">
+          <span class="brand__icon">
+            <img src="./public/icon.svg" alt="StudySync" />
+          </span>
+          <span class="brand__name">StudySync</span>
+        </a>
+        <button class="nav__toggle" aria-expanded="false" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+        <nav class="nav__links">
+          <a href="#features">Features</a>
+          <a href="#how-it-works">How It Works</a>
+          <a href="#testimonials">Community</a>
+          <a href="terms.html">Terms</a>
+          <a href="privacy.html">Privacy</a>
+        </nav>
+        <div class="nav__actions">
+          <a class="btn btn--ghost" href="sign-in.html">Sign In</a>
+          <a class="btn btn--primary" href="sign-up.html">Get Started</a>
+        </div>
+      </div>
+      <div class="nav__mobile" hidden>
+        <a href="#features">Features</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#testimonials">Community</a>
+        <a href="terms.html">Terms</a>
+        <a href="privacy.html">Privacy</a>
+        <div class="nav__mobile-actions">
+          <a class="btn btn--ghost" href="sign-in.html">Sign In</a>
+          <a class="btn btn--primary" href="sign-up.html">Get Started</a>
+        </div>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero section">
+        <div class="bg-shape bg-shape--one"></div>
+        <div class="bg-shape bg-shape--two"></div>
+        <div class="bg-shape bg-shape--three"></div>
+        <div class="hero__inner">
+          <div class="pill hero__pill">
+            <span class="dot"></span>
+            <span>Join <strong data-counter="50000">0</strong>+ students sharing knowledge</span>
+          </div>
+          <h1>
+            <span>Share Knowledge,</span>
+            <span class="gradient-text">Grow Together</span>
+          </h1>
+          <p class="lead">
+            The premier platform where students contribute quality notes to unlock a world of academic resources.
+            Upload to unlock, learn to earn.
+          </p>
+          <div class="hero__ctas">
+            <a class="btn btn--primary btn--lg" href="sign-up.html">Start Contributing</a>
+            <a class="btn btn--outline btn--lg" href="#how-it-works">See How It Works</a>
+          </div>
+          <div class="hero__grid" aria-hidden="true">
+            <div class="hero__card">
+              <div class="hero__icon">⬆️</div>
+              <p>Upload Notes</p>
+              <small>Easy sharing</small>
+            </div>
+            <div class="hero__card">
+              <div class="hero__icon">⬇️</div>
+              <p>Download</p>
+              <small>Unlimited access</small>
+            </div>
+            <div class="hero__card">
+              <div class="hero__icon">⭐</div>
+              <p>Quality</p>
+              <small>Peer reviewed</small>
+            </div>
+            <div class="hero__card">
+              <div class="hero__icon">👥</div>
+              <p>Community</p>
+              <small>50K+ members</small>
+            </div>
+          </div>
+        </div>
+        <div class="scroll-indicator" aria-hidden="true">
+          <span></span>
+        </div>
+      </section>
+
+      <section id="features" class="section section--padded">
+        <div class="section__header">
+          <div class="pill">
+            <span>Powerful Features</span>
+          </div>
+          <h2>Everything You Need to <span class="gradient-text">Succeed</span></h2>
+          <p class="muted">
+            A complete ecosystem designed to make academic resource sharing seamless, rewarding, and community-driven.
+          </p>
+        </div>
+        <div class="feature-grid" id="feature-grid"></div>
+
+        <div id="how-it-works" class="how">
+          <div class="section__header">
+            <div class="pill">
+              <span>Simple Process</span>
+            </div>
+            <h2>How <span class="gradient-text">StudySync</span> Works</h2>
+          </div>
+          <div class="how__steps" id="steps"></div>
+        </div>
+      </section>
+
+      <section class="section stats">
+        <div class="section__header">
+          <h2>Trusted by Students <span class="gradient-text">Worldwide</span></h2>
+          <p class="muted">Join the fastest growing academic resource sharing community</p>
+        </div>
+        <div class="stats__grid" id="stats-grid"></div>
+      </section>
+
+      <section id="browse" class="section browse">
+        <div class="section__header">
+          <h2>Browse Notes</h2>
+          <p class="muted">Discover quality notes from students worldwide</p>
+        </div>
+
+        <div class="search" id="search">
+          <div class="search__field">
+            <span class="search__icon">🔍</span>
+            <input id="search-input" type="text" placeholder="Search notes by subject, topic, or keyword..." />
+            <button id="clear-search" class="icon-btn" aria-label="Clear search">✕</button>
+            <button class="btn btn--primary" id="search-submit">Search</button>
+          </div>
+          <div class="search__dropdown" id="search-dropdown" hidden></div>
+        </div>
+
+      </section>
+
+      <section id="testimonials" class="section testimonials">
+        <div class="section__header">
+          <div class="pill">
+            <span>Student Stories</span>
+          </div>
+          <h2>Loved by <span class="gradient-text">Students</span></h2>
+          <p class="muted">See what our community members have to say about their StudySync experience</p>
+        </div>
+        <div class="testimonials__grid" id="testimonials-grid"></div>
+        <div class="testimonials__carousel" id="testimonials-carousel">
+          <button class="icon-btn" data-action="prev" aria-label="Previous testimonial">←</button>
+          <div class="testimonials__slide" id="testimonial-slide"></div>
+          <button class="icon-btn" data-action="next" aria-label="Next testimonial">→</button>
+        </div>
+        <div class="testimonials__dots" id="testimonial-dots"></div>
+      </section>
+
+      <section class="section cta">
+        <div class="cta__card glass">
+          <div class="pill pill--muted">
+            <span>Join 50,000+ Students</span>
+          </div>
+          <h2>Ready to Transform Your <span class="gradient-text">Academic Journey?</span></h2>
+          <p class="muted">
+            Start sharing, start learning, start achieving. Your contribution today unlocks a world of knowledge tomorrow.
+          </p>
+          <div class="cta__actions">
+            <a class="btn btn--primary btn--lg" href="sign-up.html">Get Started Free</a>
+            <a class="btn btn--outline btn--lg" href="browse.html">Browse Notes</a>
+          </div>
+          <p class="fineprint">No credit card required. Free forever for basic features.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer__brand">
+        <div class="brand">
+          <span class="brand__icon">
+            <img src="./public/icon.svg" alt="StudySync" />
+          </span>
+          <span class="brand__name">StudySync</span>
+        </div>
+        <p class="muted">Empowering students worldwide to share knowledge and grow together.</p>
+        <div class="social">
+          <a href="#" aria-label="Twitter">𝕏</a>
+          <a href="#" aria-label="GitHub">GH</a>
+          <a href="#" aria-label="LinkedIn">in</a>
+          <a href="#" aria-label="Email">@</a>
+        </div>
+      </div>
+      <div class="footer__links">
+        <div>
+          <h4>Product</h4>
+          <a href="#features">Features</a>
+          <a href="#how-it-works">How It Works</a>
+          <a href="#browse">Browse Notes</a>
+        </div>
+        <div>
+          <h4>Company</h4>
+          <a href="#">About Us</a>
+          <a href="#">Careers</a>
+          <a href="#">Blog</a>
+        </div>
+        <div>
+          <h4>Resources</h4>
+          <a href="#">Help Center</a>
+          <a href="#testimonials">Community</a>
+          <a href="#">Guidelines</a>
+        </div>
+        <div>
+          <h4>Legal</h4>
+          <a href="#">Privacy</a>
+          <a href="#">Terms</a>
+          <a href="#">Cookies</a>
+        </div>
+      </div>
+      <div class="footer__meta">
+        <span>&copy; <span id="year"></span> StudySync. All rights reserved.</span>
+        <span>Made with care for students, by students.</span>
+      </div>
+    </footer>
+
+    <div class="modal" id="note-modal" aria-hidden="true">
+      <div class="modal__backdrop"></div>
+      <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <button class="icon-btn modal__close" aria-label="Close preview">✕</button>
+        <div class="modal__content">
+          <div class="modal__preview">
+            <img id="modal-image" alt="Note preview" src="./public/placeholder.jpg" />
+            <div class="page-control">
+              <button class="icon-btn" id="page-prev" aria-label="Previous page">←</button>
+              <span id="page-indicator">1 / 1</span>
+              <button class="icon-btn" id="page-next" aria-label="Next page">→</button>
+            </div>
+          </div>
+          <div class="modal__details">
+            <div class="modal__header">
+              <div class="pill pill--muted" id="modal-subject"></div>
+              <div class="modal__actions">
+                <button class="icon-btn">🔗</button>
+                <button class="icon-btn">🔖</button>
+                <button class="icon-btn danger">⚑</button>
+              </div>
+            </div>
+            <h3 id="modal-title"></h3>
+            <div class="modal__meta" id="modal-meta"></div>
+            <div class="modal__tags" id="modal-tags"></div>
+            <div class="modal__rate">
+              <p>How would you rate these notes?</p>
+              <div class="stars" id="rating-stars"></div>
+              <p class="muted small" id="rating-thanks" hidden>
+                Thanks for rating! Your feedback helps the community.
+              </p>
+            </div>
+            <div class="modal__comments">
+              <textarea id="comment-input" rows="3" placeholder="Add a comment..."></textarea>
+              <div class="modal__comment-actions">
+                <button class="btn btn--primary" id="comment-submit">Post Comment</button>
+              </div>
+              <div class="modal__comment-list" id="comment-list"></div>
+            </div>
+            <button class="btn btn--primary btn--block" id="download-btn">Download Notes</button>
+            <p class="fineprint center">Uses 1 download credit</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="./script.js" defer></script>
+  </body>
+</html>
+

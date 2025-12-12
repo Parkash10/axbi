@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In - StudySync</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        border: 'var(--border)',
+                        input: 'var(--input)',
+                        ring: 'var(--ring)',
+                        background: 'var(--background)',
+                        foreground: 'var(--foreground)',
+                        primary: {
+                            DEFAULT: 'var(--primary)',
+                            foreground: 'var(--primary-foreground)',
+                        },
+                        secondary: {
+                            DEFAULT: 'var(--secondary)',
+                            foreground: 'var(--secondary-foreground)',
+                        },
+                        destructive: {
+                            DEFAULT: 'var(--destructive)',
+                            foreground: 'var(--destructive-foreground)',
+                        },
+                        muted: {
+                            DEFAULT: 'var(--muted)',
+                            foreground: 'var(--muted-foreground)',
+                        },
+                        accent: {
+                            DEFAULT: 'var(--accent)',
+                            foreground: 'var(--accent-foreground)',
+                        },
+                        popover: {
+                            DEFAULT: 'var(--popover)',
+                            foreground: 'var(--popover-foreground)',
+                        },
+                        card: {
+                            DEFAULT: 'var(--card)',
+                            foreground: 'var(--card-foreground)',
+                        },
+                    },
+                    borderRadius: {
+                        lg: 'var(--radius)',
+                        md: 'calc(var(--radius) - 2px)',
+                        sm: 'calc(var(--radius) - 4px)',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Poppins', 'sans-serif'],
+                        poppins: ['Poppins', 'sans-serif'],
+                    },
+                    keyframes: {
+                        'slide-up': {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        'float': {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        'float-delayed': {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        'pulse-glow': {
+                            '0%, 100%': { opacity: '1' },
+                            '50%': { opacity: '0.5' },
+                        },
+                        'gradient': {
+                            '0%': { backgroundPosition: '0% 50%' },
+                            '50%': { backgroundPosition: '100% 50%' },
+                            '100%': { backgroundPosition: '0% 50%' },
+                        }
+                    },
+                    animation: {
+                        'slide-up': 'slide-up 0.5s ease-out forwards',
+                        'float': 'float 6s ease-in-out infinite',
+                        'float-delayed': 'float-delayed 6s ease-in-out 3s infinite',
+                        'pulse-glow': 'pulse-glow 4s ease-in-out infinite',
+                        'gradient': 'gradient 15s ease infinite',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Babel for JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script>
+        window.addEventListener('error', function() {
+            var root = document.getElementById('root');
+            if (root && !root.innerHTML) {
+                root.innerHTML = '<div style="padding:24px;text-align:center">Failed to load. Please refresh.</div>'
+            }
+        });
+    </script>
+
+    <style>
+        :root {
+            --background: oklch(0.985 0.002 247);
+            --foreground: oklch(0.145 0.02 250);
+            --card: oklch(0.98 0.005 250);
+            --card-foreground: oklch(0.145 0.02 250);
+            --popover: oklch(1 0 0);
+            --popover-foreground: oklch(0.145 0.02 250);
+            --primary: oklch(0.55 0.22 264);
+            --primary-foreground: oklch(0.985 0 0);
+            --secondary: oklch(0.62 0.19 300);
+            --secondary-foreground: oklch(0.985 0 0);
+            --accent: oklch(0.72 0.17 168);
+            --accent-foreground: oklch(0.145 0.02 250);
+            --muted: oklch(0.96 0.008 250);
+            --muted-foreground: oklch(0.45 0.03 250);
+            --destructive: oklch(0.577 0.245 27.325);
+            --destructive-foreground: oklch(0.985 0 0);
+            --border: oklch(0.91 0.015 260);
+            --input: oklch(0.91 0.015 260);
+            --ring: oklch(0.55 0.22 264);
+            --radius: 0.75rem;
+        }
+
+        .dark {
+            --background: oklch(0.13 0.02 260);
+            --foreground: oklch(0.985 0 0);
+            --card: oklch(0.17 0.025 260);
+            --card-foreground: oklch(0.985 0 0);
+            --popover: oklch(0.17 0.025 260);
+            --popover-foreground: oklch(0.985 0 0);
+            --primary: oklch(0.65 0.22 264);
+            --primary-foreground: oklch(0.985 0 0);
+            --secondary: oklch(0.7 0.19 300);
+            --secondary-foreground: oklch(0.985 0 0);
+            --accent: oklch(0.72 0.17 168);
+            --accent-foreground: oklch(0.985 0 0);
+            --muted: oklch(0.22 0.025 260);
+            --muted-foreground: oklch(0.65 0.02 260);
+            --destructive: oklch(0.55 0.2 27);
+            --destructive-foreground: oklch(0.985 0 0);
+            --border: oklch(0.28 0.03 260);
+            --input: oklch(0.28 0.03 260);
+            --ring: oklch(0.65 0.22 264);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .glass-strong {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .dark .glass {
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .dark .glass-strong {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-background text-foreground antialiased">
+    <div id="root"></div>
+
+    <script type="text/babel" data-type="module">
+        import React, { useState, useEffect } from 'https://esm.sh/react@18.2.0';
+        import { createRoot } from 'https://esm.sh/react-dom@18.2.0/client';
+        import { 
+            BookOpen, Eye, EyeOff, Mail, Lock, ArrowRight, Loader2, Github, Chrome, Check 
+        } from 'https://esm.sh/lucide-react@0.300.0';
+        import { clsx } from 'https://esm.sh/clsx';
+        import { twMerge } from 'https://esm.sh/tailwind-merge';
+
+        // Utils
+        function cn(...inputs) {
+            return twMerge(clsx(inputs));
+        }
+
+        // --- UI Components ---
+
+        const Button = React.forwardRef(({ className, variant = "default", size = "default", asChild = false, ...props }, ref) => {
+            const variants = {
+                default: 'bg-primary text-primary-foreground hover:bg-primary/90',
+                destructive: 'bg-destructive text-white hover:bg-destructive/90',
+                outline: 'border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground',
+                secondary: 'bg-secondary text-secondary-foreground hover:bg-secondary/80',
+                ghost: 'hover:bg-accent hover:text-accent-foreground',
+                link: 'text-primary underline-offset-4 hover:underline'
+            };
+            
+            const sizes = {
+                default: 'h-9 px-4 py-2',
+                sm: 'h-8 rounded-md px-3 text-xs',
+                lg: 'h-10 rounded-md px-8',
+                icon: 'h-9 w-9'
+            };
+
+            const Comp = asChild ? React.Fragment : "button";
+            const baseStyles = "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]";
+            
+            const combinedClassName = cn(baseStyles, variants[variant], sizes[size], className);
+
+            if (asChild) {
+                const child = React.Children.only(props.children);
+                return React.cloneElement(child, {
+                    className: cn(combinedClassName, child.props.className),
+                    ...props,
+                    children: child.props.children
+                });
+            }
+
+            return (
+                <button
+                    className={combinedClassName}
+                    ref={ref}
+                    {...props}
+                />
+            );
+        });
+        Button.displayName = "Button";
+
+        const Input = React.forwardRef(({ className, type, ...props }, ref) => {
+            return (
+                <input
+                    type={type}
+                    className={cn(
+                        'file:text-foreground placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground dark:bg-input/30 border-input h-9 w-full min-w-0 rounded-md border bg-transparent px-3 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm',
+                        'focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]',
+                        'aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive',
+                        className,
+                    )}
+                    ref={ref}
+                    {...props}
+                />
+            )
+        })
+        Input.displayName = "Input"
+
+        const Label = React.forwardRef(({ className, ...props }, ref) => (
+            <label
+                ref={ref}
+                className={cn(
+                    "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70",
+                    className
+                )}
+                {...props}
+            />
+        ))
+        Label.displayName = "Label"
+
+        const Checkbox = React.forwardRef(({ className, checked, onCheckedChange, ...props }, ref) => {
+            return (
+                <button
+                    type="button"
+                    role="checkbox"
+                    aria-checked={checked}
+                    onClick={() => onCheckedChange?.(!checked)}
+                    className={cn(
+                        "peer h-4 w-4 shrink-0 rounded-sm border border-primary ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground",
+                        checked ? "bg-primary text-primary-foreground" : "bg-transparent",
+                        className
+                    )}
+                    ref={ref}
+                    {...props}
+                >
+                    {checked && <Check className="h-3 w-3" />}
+                </button>
+            )
+        })
+        Checkbox.displayName = "Checkbox"
+
+        const Link = ({ href, children, className, ...props }) => {
+            return (
+                <a href={href} className={className} {...props}>
+                    {children}
+                </a>
+            );
+        };
+
+        // --- Auth Components ---
+
+        function AnimatedBackground() {
+            const [particles, setParticles] = useState([])
+
+            useEffect(() => {
+                const initialParticles = Array.from({ length: 50 }, (_, i) => ({
+                    id: i,
+                    x: Math.random() * 100,
+                    y: Math.random() * 100,
+                    size: Math.random() * 4 + 1,
+                    speedX: (Math.random() - 0.5) * 0.5,
+                    speedY: (Math.random() - 0.5) * 0.5,
+                    opacity: Math.random() * 0.5 + 0.1,
+                }))
+                setParticles(initialParticles)
+
+                const interval = setInterval(() => {
+                    setParticles((prev) =>
+                        prev.map((p) => ({
+                            ...p,
+                            x: (p.x + p.speedX + 100) % 100,
+                            y: (p.y + p.speedY + 100) % 100,
+                        })),
+                    )
+                }, 50)
+
+                return () => clearInterval(interval)
+            }, [])
+
+            return (
+                <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                    {/* Gradient background */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-background to-secondary/20 animate-gradient" />
+
+                    {/* Grid pattern */}
+                    <div className="absolute inset-0 bg-[linear-gradient(rgba(37,99,235,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(37,99,235,0.05)_1px,transparent_1px)] bg-[size:40px_40px]" />
+
+                    {/* Floating shapes */}
+                    <div className="absolute top-20 left-10 w-72 h-72 bg-primary/30 rounded-full blur-3xl animate-float" />
+                    <div className="absolute bottom-20 right-10 w-96 h-96 bg-secondary/30 rounded-full blur-3xl animate-float-delayed" />
+                    <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-accent/20 rounded-full blur-3xl animate-pulse-glow" />
+
+                    {/* Particles */}
+                    {particles.map((particle) => (
+                        <div
+                            key={particle.id}
+                            className="absolute rounded-full bg-primary"
+                            style={{
+                                left: `${particle.x}%`,
+                                top: `${particle.y}%`,
+                                width: particle.size,
+                                height: particle.size,
+                                opacity: particle.opacity,
+                                transition: "left 0.05s linear, top 0.05s linear",
+                            }}
+                        />
+                    ))}
+
+                    {/* Geometric shapes */}
+                    <div className="absolute top-32 right-[20%] w-8 h-8 border-2 border-primary/30 rotate-45 animate-float" />
+                    <div className="absolute bottom-32 left-[15%] w-6 h-6 bg-secondary/40 rounded-full animate-pulse-glow" />
+                    <div className="absolute top-[40%] left-[10%] w-4 h-4 border-2 border-accent/40 rounded-full animate-float-delayed" />
+                </div>
+            )
+        }
+
+        function AuthLayout({ children }) {
+            return (
+                <div className="min-h-screen flex items-center justify-center p-4 relative">
+                    <AnimatedBackground />
+
+                    {/* Logo */}
+                    <Link href="landing-page.html" className="absolute top-6 left-6 flex items-center gap-2 z-20 group">
+                        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center group-hover:scale-105 transition-transform">
+                            <BookOpen className="w-5 h-5 text-primary-foreground" />
+                        </div>
+                        <span className="font-heading font-bold text-xl text-foreground">StudySync</span>
+                    </Link>
+
+                    {/* Auth Card */}
+                    <div className="relative z-10 w-full max-w-md">
+                        <div className="glass-strong rounded-3xl p-8 shadow-2xl">{children}</div>
+                    </div>
+                </div>
+            )
+        }
+
+        function SignInForm() {
+            const [showPassword, setShowPassword] = useState(false)
+            const [isLoading, setIsLoading] = useState(false)
+            const [formData, setFormData] = useState({
+                email: "",
+                password: "",
+                remember: false,
+            })
+            const [error, setError] = useState("")
+            const [focusedField, setFocusedField] = useState(null)
+
+            const handleSubmit = async (e) => {
+                e.preventDefault()
+                setError("")
+                setIsLoading(true)
+
+                // Simulate network delay
+                await new Promise((resolve) => setTimeout(resolve, 800))
+
+                // Validate credentials against localStorage
+                const email = formData.email.trim()
+                const password = formData.password
+
+                if (!email || password.length < 6) {
+                    setError("Please enter a valid email and password (6+ characters).")
+                    setIsLoading(false)
+                    return
+                }
+
+                // Check localStorage for users
+                const allUsersJson = localStorage.getItem("studysync:users")
+                const allUsers = allUsersJson ? JSON.parse(allUsersJson) : []
+                
+                // Also check single user format (for backward compatibility)
+                const singleUserJson = localStorage.getItem("studysync:user")
+                const singleUser = singleUserJson ? JSON.parse(singleUserJson) : null
+
+                // Find matching user
+                let foundUser = null
+                if (singleUser && singleUser.email === email && singleUser.password === password) {
+                    foundUser = singleUser
+                } else {
+                    foundUser = allUsers.find(u => u.email === email && u.password === password)
+                }
+
+                if (foundUser) {
+                    // Set authentication flag
+                    localStorage.setItem("studysync:isAuthenticated", "true")
+                    localStorage.setItem("studysync:currentUser", JSON.stringify({
+                        name: foundUser.name || foundUser.fullName,
+                        email: foundUser.email,
+                        id: foundUser.id
+                    }))
+                    
+                    // Remember me functionality
+                    if (formData.remember) {
+                        localStorage.setItem("studysync:session", email)
+                    }
+                    
+                    // Redirect to dashboard
+                    window.location.href = "dashboard.html"
+                } else {
+                    setError("Invalid email or password. Please try again or sign up first.")
+                    setIsLoading(false)
+                }
+            }
+
+            return (
+                <div className="space-y-6">
+                    {/* Header */}
+                    <div className="text-center space-y-2">
+                        <h1 className="font-heading text-3xl font-bold text-foreground">Welcome Back</h1>
+                        <p className="text-muted-foreground">Sign in to continue your learning journey</p>
+                    </div>
+
+                    {/* Social Login */}
+                    <div className="grid grid-cols-2 gap-3">
+                        <Button
+                            variant="outline"
+                            className="bg-background/50 hover:bg-muted transition-all rounded-xl py-5"
+                            type="button"
+                        >
+                            <Chrome className="w-5 h-5 mr-2" />
+                            Google
+                        </Button>
+                        <Button
+                            variant="outline"
+                            className="bg-background/50 hover:bg-muted transition-all rounded-xl py-5"
+                            type="button"
+                        >
+                            <Github className="w-5 h-5 mr-2" />
+                            GitHub
+                        </Button>
+                    </div>
+
+                    {/* Divider */}
+                    <div className="relative">
+                        <div className="absolute inset-0 flex items-center">
+                            <div className="w-full border-t border-border" />
+                        </div>
+                        <div className="relative flex justify-center text-xs">
+                            <span className="bg-card px-4 text-muted-foreground">or continue with email</span>
+                        </div>
+                    </div>
+
+                    {/* Error Message */}
+                    {error && (
+                        <div className="bg-destructive/10 border border-destructive/20 text-destructive px-4 py-3 rounded-xl text-sm animate-slide-up">
+                            {error}
+                        </div>
+                    )}
+
+                    {/* Form */}
+                    <form onSubmit={handleSubmit} className="space-y-5">
+                        {/* Email Field */}
+                        <div className="space-y-2">
+                            <Label
+                                htmlFor="email"
+                                className={`text-sm font-medium transition-colors ${
+                                    focusedField === "email" ? "text-primary" : "text-foreground"
+                                }`}
+                            >
+                                Email Address
+                            </Label>
+                            <div className="relative">
+                                <Mail
+                                    className={`absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 transition-colors ${
+                                        focusedField === "email" ? "text-primary" : "text-muted-foreground"
+                                    }`}
+                                />
+                                <Input
+                                    id="email"
+                                    type="email"
+                                    placeholder="you@university.edu"
+                                    value={formData.email}
+                                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                                    onFocus={() => setFocusedField("email")}
+                                    onBlur={() => setFocusedField(null)}
+                                    className="pl-12 py-6 rounded-xl bg-background/50 border-border focus:border-primary focus:ring-primary/20 transition-all"
+                                    required
+                                />
+                            </div>
+                        </div>
+
+                        {/* Password Field */}
+                        <div className="space-y-2">
+                            <div className="flex items-center justify-between">
+                                <Label
+                                    htmlFor="password"
+                                    className={`text-sm font-medium transition-colors ${
+                                        focusedField === "password" ? "text-primary" : "text-foreground"
+                                    }`}
+                                >
+                                    Password
+                                </Label>
+                                <Link href="forgot-password.html" className="text-sm text-primary hover:text-primary/80 transition-colors">
+                                    Forgot password?
+                                </Link>
+                            </div>
+                            <div className="relative">
+                                <Lock
+                                    className={`absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 transition-colors ${
+                                        focusedField === "password" ? "text-primary" : "text-muted-foreground"
+                                    }`}
+                                />
+                                <Input
+                                    id="password"
+                                    type={showPassword ? "text" : "password"}
+                                    placeholder="Enter your password"
+                                    value={formData.password}
+                                    onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                                    onFocus={() => setFocusedField("password")}
+                                    onBlur={() => setFocusedField(null)}
+                                    className="pl-12 pr-12 py-6 rounded-xl bg-background/50 border-border focus:border-primary focus:ring-primary/20 transition-all"
+                                    required
+                                />
+                                <button
+                                    type="button"
+                                    onClick={() => setShowPassword(!showPassword)}
+                                    className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+                                >
+                                    {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                                </button>
+                            </div>
+                        </div>
+
+                        {/* Remember Me */}
+                        <div className="flex items-center gap-2">
+                            <Checkbox
+                                id="remember"
+                                checked={formData.remember}
+                                onCheckedChange={(checked) => setFormData({ ...formData, remember: checked })}
+                                className="border-border"
+                            />
+                            <Label htmlFor="remember" className="text-sm text-muted-foreground cursor-pointer">
+                                Remember me for 30 days
+                            </Label>
+                        </div>
+
+                        {/* Submit Button */}
+                        <Button
+                            type="submit"
+                            disabled={isLoading}
+                            className="w-full bg-gradient-to-r from-primary to-secondary hover:opacity-90 transition-all text-primary-foreground py-6 rounded-xl text-base font-medium group"
+                        >
+                            {isLoading ? (
+                                <>
+                                    <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                                    Signing in...
+                                </>
+                            ) : (
+                                <>
+                                    Sign In
+                                    <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+                                </>
+                            )}
+                        </Button>
+                    </form>
+
+                    {/* Sign Up Link */}
+                    <p className="text-center text-sm text-muted-foreground">
+                        Don&apos;t have an account?{" "}
+                        <Link href="sign-up.html" className="text-primary hover:text-primary/80 font-medium transition-colors">
+                            Sign up free
+                        </Link>
+                    </p>
+                </div>
+            )
+        }
+
+        class ErrorBoundary extends React.Component {
+            constructor(props) { super(props); this.state = { error: null } }
+            componentDidCatch(error, info) { console.error(error, info); this.setState({ error }) }
+            render() {
+                if (this.state.error) {
+                    return (
+                        <div className="min-h-screen flex items-center justify-center p-8">
+                            <div className="glass-strong rounded-2xl p-6 max-w-md text-center">
+                                <h1 className="text-xl font-bold text-foreground">Something went wrong</h1>
+                                <p className="text-muted-foreground mt-2">Please reload or try again later.</p>
+                            </div>
+                        </div>
+                    )
+                }
+                return this.props.children
+            }
+        }
+
+        function App() {
+            return (
+                <ErrorBoundary>
+                    <AuthLayout>
+                        <SignInForm />
+                    </AuthLayout>
+                </ErrorBoundary>
+            )
+        }
+
+        const root = createRoot(document.getElementById('root'));
+        try { root.render(<App />) } catch (e) { console.error(e); document.getElementById('root').innerHTML = '<div style="padding:24px;text-align:center">Failed to load. Please refresh.</div>' }
+    </script>
+</body>
+</html>

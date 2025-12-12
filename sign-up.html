@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - StudySync</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        border: 'var(--border)',
+                        input: 'var(--input)',
+                        ring: 'var(--ring)',
+                        background: 'var(--background)',
+                        foreground: 'var(--foreground)',
+                        primary: {
+                            DEFAULT: 'var(--primary)',
+                            foreground: 'var(--primary-foreground)',
+                        },
+                        secondary: {
+                            DEFAULT: 'var(--secondary)',
+                            foreground: 'var(--secondary-foreground)',
+                        },
+                        destructive: {
+                            DEFAULT: 'var(--destructive)',
+                            foreground: 'var(--destructive-foreground)',
+                        },
+                        muted: {
+                            DEFAULT: 'var(--muted)',
+                            foreground: 'var(--muted-foreground)',
+                        },
+                        accent: {
+                            DEFAULT: 'var(--accent)',
+                            foreground: 'var(--accent-foreground)',
+                        },
+                        popover: {
+                            DEFAULT: 'var(--popover)',
+                            foreground: 'var(--popover-foreground)',
+                        },
+                        card: {
+                            DEFAULT: 'var(--card)',
+                            foreground: 'var(--card-foreground)',
+                        },
+                    },
+                    borderRadius: {
+                        lg: 'var(--radius)',
+                        md: 'calc(var(--radius) - 2px)',
+                        sm: 'calc(var(--radius) - 4px)',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Poppins', 'sans-serif'],
+                        poppins: ['Poppins', 'sans-serif'],
+                    },
+                    keyframes: {
+                        'slide-up': {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        'float': {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        'float-delayed': {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        'pulse-glow': {
+                            '0%, 100%': { opacity: '1' },
+                            '50%': { opacity: '0.5' },
+                        },
+                        'gradient': {
+                            '0%': { backgroundPosition: '0% 50%' },
+                            '50%': { backgroundPosition: '100% 50%' },
+                            '100%': { backgroundPosition: '0% 50%' },
+                        }
+                    },
+                    animation: {
+                        'slide-up': 'slide-up 0.5s ease-out forwards',
+                        'float': 'float 6s ease-in-out infinite',
+                        'float-delayed': 'float-delayed 6s ease-in-out 3s infinite',
+                        'pulse-glow': 'pulse-glow 4s ease-in-out infinite',
+                        'gradient': 'gradient 15s ease infinite',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script>
+        window.addEventListener('error', function() {
+            var root = document.getElementById('root');
+            if (root && !root.innerHTML) {
+                root.innerHTML = '<div style="padding:24px;text-align:center">Failed to load. Please refresh.</div>'
+            }
+        });
+    </script>
+
+    <style>
+        :root {
+            --background: oklch(0.985 0.002 247);
+            --foreground: oklch(0.145 0.02 250);
+            --card: oklch(0.98 0.005 250);
+            --card-foreground: oklch(0.145 0.02 250);
+            --popover: oklch(1 0 0);
+            --popover-foreground: oklch(0.145 0.02 250);
+            --primary: oklch(0.55 0.22 264);
+            --primary-foreground: oklch(0.985 0 0);
+            --secondary: oklch(0.62 0.19 300);
+            --secondary-foreground: oklch(0.985 0 0);
+            --accent: oklch(0.72 0.17 168);
+            --accent-foreground: oklch(0.145 0.02 250);
+            --muted: oklch(0.96 0.008 250);
+            --muted-foreground: oklch(0.45 0.03 250);
+            --destructive: oklch(0.577 0.245 27.325);
+            --destructive-foreground: oklch(0.985 0 0);
+            --border: oklch(0.91 0.015 260);
+            --input: oklch(0.91 0.015 260);
+            --ring: oklch(0.55 0.22 264);
+            --radius: 0.75rem;
+        }
+
+        .dark {
+            --background: oklch(0.13 0.02 260);
+            --foreground: oklch(0.985 0 0);
+            --card: oklch(0.17 0.025 260);
+            --card-foreground: oklch(0.985 0 0);
+            --popover: oklch(0.17 0.025 260);
+            --popover-foreground: oklch(0.985 0 0);
+            --primary: oklch(0.65 0.22 264);
+            --primary-foreground: oklch(0.985 0 0);
+            --secondary: oklch(0.7 0.19 300);
+            --secondary-foreground: oklch(0.985 0 0);
+            --accent: oklch(0.72 0.17 168);
+            --accent-foreground: oklch(0.985 0 0);
+            --muted: oklch(0.22 0.025 260);
+            --muted-foreground: oklch(0.65 0.02 260);
+            --destructive: oklch(0.55 0.2 27);
+            --destructive-foreground: oklch(0.985 0 0);
+            --border: oklch(0.28 0.03 260);
+            --input: oklch(0.28 0.03 260);
+            --ring: oklch(0.65 0.22 264);
+        }
+
+        body { font-family: 'Inter', sans-serif; }
+        .glass { background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); }
+        .glass-strong { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.3); }
+        .dark .glass { background: rgba(0, 0, 0, 0.2); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .dark .glass-strong { background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(255, 255, 255, 0.1); }
+    </style>
+</head>
+<body class="bg-background text-foreground antialiased">
+    <div id="root"></div>
+
+    <script type="text/babel" data-type="module">
+        import React, { useState, useEffect } from 'https://esm.sh/react@18.2.0';
+        import { createRoot } from 'https://esm.sh/react-dom@18.2.0/client';
+        import { 
+            BookOpen, Eye, EyeOff, Mail, Lock, User, Users, Building2, ArrowRight, Loader2, Github, Chrome, Check, X, Search, Plus, Key, Copy, Circle as CircleIcon
+        } from 'https://esm.sh/lucide-react@0.300.0';
+        import { clsx } from 'https://esm.sh/clsx';
+        import { twMerge } from 'https://esm.sh/tailwind-merge';
+
+        function cn(...inputs) { return twMerge(clsx(inputs)); }
+
+        const toast = {
+            success: (message) => { const event = new CustomEvent('toast', { detail: { message, type: 'success' } }); window.dispatchEvent(event); },
+            error: (message) => { const event = new CustomEvent('toast', { detail: { message, type: 'error' } }); window.dispatchEvent(event); }
+        };
+
+        function Toaster() {
+            const [toasts, setToasts] = useState([]);
+            useEffect(() => {
+                const handleToast = (e) => {
+                    const id = Date.now();
+                    setToasts(prev => [...prev, { ...e.detail, id }]);
+                    setTimeout(() => { setToasts(prev => prev.filter(t => t.id !== id)); }, 3000);
+                };
+                window.addEventListener('toast', handleToast);
+                return () => window.removeEventListener('toast', handleToast);
+            }, []);
+            return (
+                <div className="fixed bottom-4 right-4 z-50 flex flex-col gap-2">
+                    {toasts.map(t => (
+                        <div key={t.id} className={cn(
+                            "px-4 py-3 rounded-xl shadow-lg text-sm font-medium animate-slide-up",
+                            t.type === 'success' ? "bg-green-500 text-white" : "bg-red-500 text-white"
+                        )}>{t.message}</div>
+                    ))}
+                </div>
+            );
+        }
+
+        const Button = React.forwardRef(({ className, variant = "default", size = "default", asChild = false, ...props }, ref) => {
+            const variants = {
+                default: 'bg-primary text-primary-foreground hover:bg-primary/90',
+                destructive: 'bg-destructive text-white hover:bg-destructive/90',
+                outline: 'border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground',
+                secondary: 'bg-secondary text-secondary-foreground hover:bg-secondary/80',
+                ghost: 'hover:bg-accent hover:text-accent-foreground',
+                link: 'text-primary underline-offset-4 hover:underline'
+            };
+            const sizes = { default: 'h-9 px-4 py-2', sm: 'h-8 rounded-md px-3 text-xs', lg: 'h-10 rounded-md px-8', icon: 'h-9 w-9' };
+            const Comp = asChild ? React.Fragment : "button";
+            const baseStyles = "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]";
+            const combinedClassName = cn(baseStyles, variants[variant], sizes[size], className);
+            if (asChild) {
+                const child = React.Children.only(props.children);
+                return React.cloneElement(child, { className: cn(combinedClassName, child.props.className), ...props, children: child.props.children });
+            }
+            return (<button className={combinedClassName} ref={ref} {...props} />);
+        });
+        Button.displayName = "Button";
+
+        const Input = React.forwardRef(({ className, type, ...props }, ref) => (
+            <input type={type} className={cn('file:text-foreground placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground dark:bg-input/30 border-input h-9 w-full min-w-0 rounded-md border bg-transparent px-3 py-1 text-base shadow-xs transition-[color,box-shadow] outline-none file:inline-flex file:h-7 file:border-0 file:bg-transparent file:text-sm file:font-medium disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm','focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]','aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive',className,)} ref={ref} {...props} />
+        ));
+        Input.displayName = "Input";
+
+        const Label = React.forwardRef(({ className, ...props }, ref) => (
+            <label ref={ref} className={cn("text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70", className)} {...props} />
+        ))
+        Label.displayName = "Label"
+
+        const Checkbox = React.forwardRef(({ className, checked, onCheckedChange, ...props }, ref) => (
+            <button type="button" role="checkbox" aria-checked={checked} onClick={() => onCheckedChange?.(!checked)} className={cn("peer h-4 w-4 shrink-0 rounded-sm border border-primary ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground", checked ? "bg-primary text-primary-foreground" : "bg-transparent", className)} ref={ref} {...props}>{checked && <Check className="h-3 w-3" />}</button>
+        ))
+        Checkbox.displayName = "Checkbox"
+
+        const Link = ({ href, children, className, ...props }) => (<a href={href} className={className} {...props}>{children}</a>);
+
+        function Card({ className, ...props }) { return (<div className={cn('bg-card text-card-foreground flex flex-col gap-6 rounded-xl border py-6 shadow-sm', className,)} {...props} />) }
+        function CardHeader({ className, ...props }) { return (<div className={cn('grid auto-rows-min grid-rows-[auto_auto] items-start gap-2 px-6', className,)} {...props} />) }
+        function CardTitle({ className, ...props }) { return (<div className={cn('leading-none font-semibold', className)} {...props} />) }
+        function CardDescription({ className, ...props }) { return (<div className={cn('text-muted-foreground text-sm', className)} {...props} />) }
+        function CardContent({ className, ...props }) { return (<div className={cn('px-6', className)} {...props} />) }
+
+        function AnimatedBackground() {
+            const [particles, setParticles] = useState([])
+            useEffect(() => {
+                const initialParticles = Array.from({ length: 50 }, (_, i) => ({ id: i, x: Math.random() * 100, y: Math.random() * 100, size: Math.random() * 4 + 1, speedX: (Math.random() - 0.5) * 0.5, speedY: (Math.random() - 0.5) * 0.5, opacity: Math.random() * 0.5 + 0.1, }))
+                setParticles(initialParticles)
+                const interval = setInterval(() => { setParticles((prev) => prev.map((p) => ({ ...p, x: (p.x + p.speedX + 100) % 100, y: (p.y + p.speedY + 100) % 100, })),) }, 50)
+                return () => clearInterval(interval)
+            }, [])
+            return (
+                <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-background to-secondary/20 animate-gradient" />
+                    <div className="absolute inset-0 bg-[linear-gradient(rgba(37,99,235,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(37,99,235,0.05)_1px,transparent_1px)] bg-[size:40px_40px]" />
+                    <div className="absolute top-20 left-10 w-72 h-72 bg-primary/30 rounded-full blur-3xl animate-float" />
+                    <div className="absolute bottom-20 right-10 w-96 h-96 bg-secondary/30 rounded-full blur-3xl animate-float-delayed" />
+                    <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-accent/20 rounded-full blur-3xl animate-pulse-glow" />
+                    {particles.map((particle) => (<div key={particle.id} className="absolute rounded-full bg-primary" style={{ left: `${particle.x}%`, top: `${particle.y}%`, width: particle.size, height: particle.size, opacity: particle.opacity, transition: "left 0.05s linear, top 0.05s linear", }} />))}
+                </div>
+            )
+        }
+
+        function AuthLayout({ children }) {
+            return (
+                <div className="min-h-screen flex items-center justify-center p-4 relative">
+                    <AnimatedBackground />
+                    <Link href="landing-page.html" className="absolute top-6 left-6 flex items-center gap-2 z-20 group">
+                        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-secondary flex items-center justify-center group-hover:scale-105 transition-transform">
+                            <BookOpen className="w-5 h-5 text-primary-foreground" />
+                        </div>
+                        <span className="font-heading font-bold text-xl text-foreground">StudySync</span>
+                    </Link>
+                    <div className="relative z-10 w-full max-w-md">{children}</div>
+                </div>
+            )
+        }
+
+        const useGroup = () => ({
+            createGroup: (name, userId, description) => {
+                const key = Math.random().toString(36).substr(2, 8).toUpperCase();
+                const group = { id: `group-${Date.now()}`, name, description, key, members: [userId] };
+                const groups = JSON.parse(localStorage.getItem('groups') || '[]');
+                groups.push(group);
+                localStorage.setItem('groups', JSON.stringify(groups));
+                return group;
+            },
+            getGroupByKey: (key) => {
+                const groups = JSON.parse(localStorage.getItem('groups') || '[]')
+                return groups.find(g => g.key === key)
+            },
+            addMemberToGroup: (groupId, userId) => {
+                const groups = JSON.parse(localStorage.getItem('groups') || '[]')
+                const idx = groups.findIndex(g => g.id === groupId)
+                if (idx > -1) {
+                    if (!groups[idx].members.includes(userId)) {
+                        groups[idx].members.push(userId)
+                        localStorage.setItem('groups', JSON.stringify(groups))
+                    }
+                    return groups[idx]
+                }
+                return null
+            },
+        })
+
+        function GroupSelection({ onComplete, userId }) {
+            const [selection, setSelection] = useState(null)
+            const [groupName, setGroupName] = useState("")
+            const [groupDescription, setGroupDescription] = useState("")
+            const [groupKey, setGroupKey] = useState("")
+            const [createdGroupKey, setCreatedGroupKey] = useState("")
+            const [createdGroupId, setCreatedGroupId] = useState("")
+            const { createGroup, getGroupByKey, addMemberToGroup } = useGroup()
+
+            const handleJoinGroup = () => {
+                const key = groupKey.trim().toUpperCase()
+                const group = getGroupByKey(key)
+                if (!group) { toast.error("Invalid group key"); return }
+                if (!group.members.includes(userId)) { addMemberToGroup(group.id, userId) }
+                toast.success("Joined group")
+                onComplete(group.id, group.key)
+            }
+
+            const handleCreateGroup = () => {
+                if (!groupName.trim()) { toast.error("Please enter a group name"); return }
+                const newGroup = createGroup(groupName.trim(), userId, groupDescription.trim() || undefined)
+                setCreatedGroupKey(newGroup.key)
+                setCreatedGroupId(newGroup.id)
+                toast.success("Group created successfully!")
+            }
+
+            if (!selection) {
+                return (
+                    <Card className="glass border-0 max-w-md mx-auto">
+                        <CardHeader>
+                            <CardTitle className="text-foreground">Join a Study Group</CardTitle>
+                            <CardDescription>Connect with your classmates or create your own study circle</CardDescription>
+                        </CardHeader>
+                        <CardContent className="space-y-4">
+                            <div className="grid gap-4">
+                                <Card className="cursor-pointer hover:border-primary transition-colors" onClick={() => setSelection("join")}> 
+                                    <CardContent className="p-6">
+                                        <div className="flex items-start gap-4">
+                                            <div className="p-3 rounded-xl bg-primary/10"><Search className="w-6 h-6 text-primary" /></div>
+                                            <div className="flex-1">
+                                                <h3 className="font-semibold text-foreground mb-1">Join Existing Group</h3>
+                                                <p className="text-sm text-muted-foreground">Enter a group key from your classmate or instructor</p>
+                                            </div>
+                                        </div>
+                                    </CardContent>
+                                </Card>
+                                <Card className="cursor-pointer hover:border-primary transition-colors" onClick={() => setSelection("create")}>
+                                    <CardContent className="p-6">
+                                        <div className="flex items-start gap-4">
+                                            <div className="p-3 rounded-xl bg-secondary/10"><Plus className="w-6 h-6 text-secondary" /></div>
+                                            <div className="flex-1">
+                                                <h3 className="font-semibold text-foreground mb-1">Create New Group</h3>
+                                                <p className="text-sm text-muted-foreground">Start your own study circle and invite others with a unique key</p>
+                                            </div>
+                                        </div>
+                                    </CardContent>
+                                </Card>
+                                <Button variant="ghost" onClick={() => onComplete(null)} className="w-full text-muted-foreground">Skip for now</Button>
+                            </div>
+                        </CardContent>
+                    </Card>
+                )
+            }
+
+            if (selection === "join") {
+                return (
+                    <Card className="glass border-0 max-w-md mx-auto">
+                        <CardHeader>
+                            <CardTitle className="text-foreground flex items-center gap-2"><Key className="w-5 h-5" />Join a Group</CardTitle>
+                            <CardDescription>Enter the group key provided by your classmate or instructor</CardDescription>
+                        </CardHeader>
+                        <CardContent className="space-y-4">
+                            <div className="space-y-2">
+                                <Label htmlFor="joinKey">Group Key</Label>
+                                <Input id="joinKey" value={groupKey} onChange={(e) => setGroupKey(e.target.value.toUpperCase())} placeholder="Enter 8-character key" className="font-mono text-lg tracking-wider text-center" maxLength={8} />
+                                <p className="text-xs text-muted-foreground">The group key should be 8 characters (letters and numbers)</p>
+                            </div>
+                            <div className="flex gap-3">
+                                <Button variant="outline" onClick={() => setSelection(null)} className="flex-1">Back</Button>
+                                <Button onClick={handleJoinGroup} className="flex-1 bg-gradient-to-r from-primary to-secondary">Join Group</Button>
+                            </div>
+                        </CardContent>
+                    </Card>
+                )
+            }
+
+            if (selection === "create") {
+                return (
+                    <Card className="glass border-0 max-w-md mx-auto">
+                        <CardHeader>
+                            <CardTitle className="text-foreground flex items-center gap-2"><Users className="w-5 h-5" />Create a Group</CardTitle>
+                            <CardDescription>Set up your study circle and get a unique key to share</CardDescription>
+                        </CardHeader>
+                        <CardContent className="space-y-4">
+                            {!createdGroupKey ? (
+                                <>
+                                    <div className="space-y-2">
+                                        <Label htmlFor="groupName">Group Name *</Label>
+                                        <Input id="groupName" value={groupName} onChange={(e) => setGroupName(e.target.value)} placeholder="e.g., CS101 Fall 2024" required />
+                                    </div>
+                                    <div className="space-y-2">
+                                        <Label htmlFor="groupDescription">Description (Optional)</Label>
+                                        <textarea id="groupDescription" value={groupDescription} onChange={(e) => setGroupDescription(e.target.value)} placeholder="Brief description of your study group" className="w-full min-h-[80px] px-3 py-2 rounded-lg border border-border bg-background resize-none focus:outline-none focus:ring-2 focus:ring-primary/20" />
+                                    </div>
+                                    <div className="flex gap-3">
+                                        <Button variant="outline" onClick={() => setSelection(null)} className="flex-1">Back</Button>
+                                        <Button onClick={handleCreateGroup} className="flex-1 bg-gradient-to-r from-primary to-secondary">Create Group</Button>
+                                    </div>
+                                </>
+                            ) : (
+                                <>
+                                    <div className="space-y-2">
+                                        <Label htmlFor="createdKey">Your Group Key</Label>
+                                        <div className="flex items-center gap-2">
+                                            <Input id="createdKey" value={createdGroupKey} readOnly className="font-mono text-lg tracking-wider text-center" />
+                                            <Button variant="outline" onClick={() => navigator.clipboard.writeText(createdGroupKey)}><Copy className="w-4 h-4" /></Button>
+                                        </div>
+                                        <p className="text-xs text-muted-foreground">Share this key with classmates so they can join</p>
+                                    </div>
+                                    <Button onClick={() => onComplete(createdGroupId, createdGroupKey)} className="w-full bg-gradient-to-r from-primary to-secondary">Continue to Sign Up</Button>
+                                </>
+                            )}
+                        </CardContent>
+                    </Card>
+                )
+            }
+
+            return null
+        }
+
+        function SignUpForm({ initialGroupId, tempUserId }) {
+            const [step, setStep] = useState(1)
+            const [isLoading, setIsLoading] = useState(false)
+            const [focusedField, setFocusedField] = useState(null)
+            const [showPassword, setShowPassword] = useState(false)
+            const [emailSuggestions, setEmailSuggestions] = useState([])
+            const [formData, setFormData] = useState({ name: '', email: '', university: '', password: '', confirmPassword: '', agreeTerms: false, groupId: initialGroupId || null, })
+            const domains = ['edu', 'ac.uk', 'edu.au', 'edu.in', 'edu.ca']
+            const passwordRequirements = [{ label: "At least 8 characters", test: (p) => p.length >= 8, }, { label: "One uppercase letter", test: (p) => /[A-Z]/.test(p), }, { label: "One lowercase letter", test: (p) => /[a-z]/.test(p), }, { label: "One number", test: (p) => /\d/.test(p), }]
+            const passwordStrength = passwordRequirements.reduce((acc, req) => acc + (req.test(formData.password) ? 1 : 0), 0)
+            const handleEmailChange = (value) => { setFormData({ ...formData, email: value }); const suggestions = []; const parts = value.split('@'); if (parts.length === 2) { const [name, domain] = parts; domains.forEach(d => { const suggestion = `${name}@${domain.split('.').slice(0, 1)[0]}.${d}`; if (suggestion !== value) suggestions.push(suggestion); }); } setEmailSuggestions(suggestions); }
+            const validateStep1 = () => { if (!formData.name.trim()) { toast.error('Please enter your full name'); return false } const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; if (!emailRegex.test(formData.email)) { toast.error('Please enter a valid email'); return false } if (!formData.university.trim()) { toast.error('Please enter your institution'); return false } return true }
+            const validateStep2 = () => { if (passwordStrength < 3) { toast.error('Password is too weak'); return false } if (formData.password !== formData.confirmPassword) { toast.error('Passwords do not match'); return false } if (!formData.agreeTerms) { toast.error('You must agree to the terms'); return false } return true }
+            const handleSubmit = (e) => { 
+                e.preventDefault(); 
+                if (step === 1) { 
+                    if (!validateStep1()) return; 
+                    setStep(2); 
+                    return 
+                } 
+                if (!validateStep2()) return; 
+                setIsLoading(true); 
+                setTimeout(() => { 
+                    const users = JSON.parse(localStorage.getItem('studysync:users') || '[]'); 
+                    const pendingUsers = JSON.parse(localStorage.getItem('studysync:pendingUsers') || '[]'); 
+                    const emailExists = users.some(u => u.email.toLowerCase() === formData.email.toLowerCase()) || pendingUsers.some(u => u.email.toLowerCase() === formData.email.toLowerCase()); 
+                    if (emailExists) { 
+                        toast.error('Email already exists'); 
+                        setIsLoading(false); 
+                        return 
+                    } 
+                    const newUser = { 
+                        id: `user-${Date.now()}`, 
+                        name: formData.name.trim(), 
+                        email: formData.email.trim(), 
+                        university: formData.university.trim(), 
+                        password: formData.password, 
+                        groupId: formData.groupId, 
+                        createdAt: new Date().toISOString(), 
+                        approved: true 
+                    }; 
+                    users.push(newUser); 
+                    localStorage.setItem('studysync:users', JSON.stringify(users)); 
+                    toast.success('Account created successfully. You can sign in now.'); 
+                    window.location.href = 'sign-in.html'; 
+                }, 1200) 
+            }
+            return (
+                <div className="space-y-6">
+                    <Card className="glass-strong border-border">
+                        <CardHeader>
+                            <CardTitle className="text-2xl">Create Your Account</CardTitle>
+                            <CardDescription>Join a community of students sharing high-quality notes.</CardDescription>
+                        </CardHeader>
+                        <CardContent>
+                            <form onSubmit={handleSubmit} className="space-y-4">
+                                {step === 1 ? (<>
+                                    <div className="space-y-2">
+                                        <Label htmlFor="name" className={`text-sm font-medium transition-colors ${focusedField === "name" ? "text-primary" : "text-foreground"}`}>Full Name</Label>
+                                        <div className="relative">
+                                            <User className={`absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 transition-colors ${focusedField === "name" ? "text-primary" : "text-muted-foreground"}`} />
+                                            <Input id="name" type="text" placeholder="Enter your full name" value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })} onFocus={() => setFocusedField("name")} onBlur={() => setFocusedField(null)} className="pl-12 py-6 rounded-xl bg-background/50 border-border focus:border-primary focus:ring-primary/20 transition-all" required />
+                                        </div>
+                                    </div>
+                                    <div className="space-y-2">
+                                        <Label htmlFor="email" className={`text-sm font-medium transition-colors ${focusedField === "email" ? "text-primary" : "text-foreground"}`}>University Email</Label>
+                                        <div className="relative">
+                                            <Mail className={`absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 transition-colors ${focusedField === "email" ? "text-primary" : "text-muted-foreground"}`} />
+                                            <Input id="email" type="email" placeholder="you@university.edu" value={formData.email} onChange={(e) => handleEmailChange(e.target.value)} onFocus={() => setFocusedField("email")} onBlur={() => setTimeout(() => setFocusedField(null), 200)} className="pl-12 py-6 rounded-xl bg-background/50 border-border focus:border-primary focus:ring-primary/20 transition-all" required />
+                                            {emailSuggestions.length > 0 && (<div className="absolute top-full left-0 right-0 mt-1 bg-card border border-border rounded-xl shadow-lg z-10 overflow-hidden">{emailSuggestions.slice(0, 4).map((suggestion) => (<button key={suggestion} type="button" onClick={() => { setFormData({ ...formData, email: suggestion }); setEmailSuggestions([]) }} className="w-full px-4 py-2 text-left text-sm hover:bg-muted transition-colors">{suggestion}</button>))}</div>)}
+                                        </div>
+                                    </div>
+                                    <div className="space-y-2">
+                                        <Label htmlFor="university" className={`text-sm font-medium transition-colors ${focusedField === "university" ? "text-primary" : "text-foreground"}`}>University / Institution</Label>
+                                        <div className="relative">
+                                            <Building2 className={`absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 transition-colors ${focusedField === "university" ? "text-primary" : "text-muted-foreground"}`} />
+                                            <Input id="university" type="text" placeholder="Enter your institution name" value={formData.university} onChange={(e) => setFormData({ ...formData, university: e.target.value })} onFocus={() => setFocusedField("university")} onBlur={() => setFocusedField(null)} className="pl-12 py-6 rounded-xl bg-background/50 border-border focus:border-primary focus:ring-primary/20 transition-all" required />
+                                        </div>
+                                    </div>
+                                </>) : (<>
+                                    <div className="space-y-2">
+                                        <Label htmlFor="password" className={`text-sm font-medium transition-colors ${focusedField === "password" ? "text-primary" : "text-foreground"}`}>Password</Label>
+                                        <div className="relative">
+                                            <Lock className={`absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 transition-colors ${focusedField === "password" ? "text-primary" : "text-muted-foreground"}`} />
+                                            <Input id="password" type={showPassword ? "text" : "password"} placeholder="Create a strong password" value={formData.password} onChange={(e) => setFormData({ ...formData, password: e.target.value })} onFocus={() => setFocusedField("password")} onBlur={() => setFocusedField(null)} className="pl-12 pr-12 py-6 rounded-xl bg-background/50 border-border focus:border-primary focus:ring-primary/20 transition-all" required />
+                                            <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors">{showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}</button>
+                                        </div>
+                                        <div className="space-y-2">
+                                            <div className="flex gap-1">{[1,2,3,4].map((i) => (<div key={i} className={`h-1 flex-1 rounded-full transition-all ${i <= passwordStrength ? (passwordStrength <= 2 ? "bg-destructive" : passwordStrength === 3 ? "bg-yellow-500" : "bg-accent") : "bg-muted"}`} />))}</div>
+                                            <div className="grid grid-cols-2 gap-2">{passwordRequirements.map((req) => (<div key={req.label} className="flex items-center gap-2 text-xs">{req.test(formData.password) ? (<Check className="w-3 h-3 text-accent" />) : (<X className="w-3 h-3 text-muted-foreground" />)}<span className={req.test(formData.password) ? "text-foreground" : "text-muted-foreground"}>{req.label}</span></div>))}</div>
+                                        </div>
+                                    </div>
+                                    <div className="space-y-2">
+                                        <Label htmlFor="confirmPassword" className={`text-sm font-medium transition-colors ${focusedField === "confirmPassword" ? "text-primary" : "text-foreground"}`}>Confirm Password</Label>
+                                        <div className="relative">
+                                            <Lock className={`absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 transition-colors ${focusedField === "confirmPassword" ? "text-primary" : "text-muted-foreground"}`} />
+                                            <Input id="confirmPassword" type={showPassword ? "text" : "password"} placeholder="Confirm your password" value={formData.confirmPassword} onChange={(e) => setFormData({ ...formData, confirmPassword: e.target.value })} onFocus={() => setFocusedField("confirmPassword")} onBlur={() => setFocusedField(null)} className="pl-12 py-6 rounded-xl bg-background/50 border-border focus:border-primary focus:ring-primary/20 transition-all" required />
+                                            {formData.confirmPassword && (<div className="absolute right-4 top-1/2 -translate-y-1/2">{formData.password === formData.confirmPassword ? (<Check className="w-5 h-5 text-accent" />) : (<X className="w-5 h-5 text-destructive" />)}</div>)}
+                                        </div>
+                                    </div>
+                                    <div className="flex items-start gap-2">
+                                        <Checkbox id="terms" checked={formData.agreeTerms} onCheckedChange={(checked) => setFormData({ ...formData, agreeTerms: checked })} className="border-border data-[state=checked]:bg-primary data-[state=checked]:border-primary mt-0.5" />
+                                        <Label htmlFor="terms" className="text-sm text-muted-foreground cursor-pointer leading-relaxed">I agree to the <Link href="terms.html" className="text-primary hover:underline">Terms of Service</Link> and <Link href="privacy.html" className="text-primary hover:underline">Privacy Policy</Link></Label>
+                                    </div>
+                                </>) }
+                                <div className="flex gap-3">
+                                    {step === 2 && (<Button type="button" variant="outline" onClick={() => setStep(1)} className="flex-1 py-6 rounded-xl">Back</Button>)}
+                                    <Button type="submit" disabled={isLoading} className={`bg-gradient-to-r from-primary to-secondary hover:opacity-90 transition-all text-primary-foreground py-6 rounded-xl text-base font-medium group ${step === 1 ? "w-full" : "flex-1"}`}>{isLoading ? (<><Loader2 className="w-5 h-5 mr-2 animate-spin" />Creating account...</>) : (<><>{step === 1 ? "Continue" : "Create Account"}</><ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" /></>)}</Button>
+                                </div>
+                            </form>
+                            <p className="text-center text-sm text-muted-foreground">Already have an account? <Link href="sign-in.html" className="text-primary hover:text-primary/80 font-medium transition-colors">Sign in</Link></p>
+                        </CardContent>
+                    </Card>
+                </div>
+            )
+        }
+
+        class ErrorBoundary extends React.Component { constructor(props) { super(props); this.state = { error: null } } componentDidCatch(error, info) { console.error(error, info); this.setState({ error }) } render() { if (this.state.error) { return (<div className="min-h-screen flex items-center justify-center p-8"><div className="glass border rounded-2xl p-6 max-w-md text-center"><h1 className="text-xl font-bold text-foreground">Something went wrong</h1><p className="text-muted-foreground mt-2">Please reload or try again later.</p></div></div>) } return this.props.children } }
+
+        function SignUpPage() {
+            const [step, setStep] = useState("group")
+            const [selectedGroupId, setSelectedGroupId] = useState(null)
+            const [tempUserId] = useState(() => `temp-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`)
+            const handleGroupComplete = (groupId, groupKey) => { setSelectedGroupId(groupId); setStep("signup") }
+            return (
+                <AuthLayout>
+                    {step === "group" ? (<GroupSelection onComplete={handleGroupComplete} userId={tempUserId} />) : (<SignUpForm initialGroupId={selectedGroupId || null} tempUserId={tempUserId} />)}
+                </AuthLayout>
+            )
+        }
+
+        const root = createRoot(document.getElementById('root'));
+        try {
+            root.render(
+                <React.StrictMode>
+                    <Toaster />
+                    <ErrorBoundary>
+                        <SignUpPage />
+                    </ErrorBoundary>
+                </React.StrictMode>
+            )
+        } catch (e) {
+            console.error(e);
+            document.getElementById('root').innerHTML = '<div style="padding:24px;text-align:center">Failed to load. Please refresh.</div>'
+        }
+    </script>
+</body>
+</html>
